@@ -70,3 +70,30 @@ Why Use Scikit-learn?
 - Supports various machine learning algorithms
 
 
+One-hot encoding is a technique used to convert categorical data into a numerical format that machine learning models can understand. In Pandas, you can achieve this using the pd.get_dummies() function.
+How One-Hot Encoding Works
+Instead of representing categorical values as numbers (which might imply an unintended order), one-hot encoding creates binary columns for each unique category.
+For example, if you have a column with values ["Red", "Blue", "Green"], one-hot encoding will transform it into:
+| Color | Red | Blue | Green | 
+| Red | 1 | 0 | 0 | 
+| Blue | 0 | 1 | 0 | 
+| Green | 0 | 0 | 1 | 
+
+
+Using One-Hot Encoding in Pandas
+
+import pandas as pd
+
+# Sample dataset
+df = pd.DataFrame({'Color': ['Red', 'Blue', 'Green', 'Red', 'Blue']})
+
+# Apply one-hot encoding
+df_encoded = pd.get_dummies(df)
+
+print(df_encoded)
+
+Why Use One-Hot Encoding?
+- Prevents models from assuming a numerical relationship between categories.
+- Works well with tree-based models like decision trees and random forests.
+- Helps in handling categorical features in machine learning.
+
