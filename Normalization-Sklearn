@@ -1,0 +1,72 @@
+1. Normalization (Min-Max Scaling)
+Normalization rescales the values in a dataset to a fixed range, typically [0,1].
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+df_normalized = scaler.fit_transform(df)
+
+This scales your dataset so that all values are between 0 and 1. It’s useful when the distribution of your data is not Gaussian (normal) and when the scale of the features varies significantly.
+
+
+2. Standardization (Z-score Scaling)
+Standardization transforms your data so that it has a mean of 0 and a standard deviation of 1.
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+df_standardized = scaler.fit_transform(df)
+
+This method is useful when your data follows a normal distribution, making it work well with algorithms that assume normally distributed input features (like logistic regression and support vector machines).
+
+Which One Should You Use?
+- Use normalization when you want to constrain values within a specific range (such as when data varies greatly in scale).
+- Use standardization when you need data centered around zero with equal variance (especially for models requiring Gaussian-distributed data).
+
+MinMaxScaler is a tool from sklearn.preprocessing that helps normalize your data by rescaling it to a fixed range, typically [0,1]. This ensures all features have similar scales, making models perform better.
+How It Works
+Normalization follows this formula:
+[ X' = \frac{X - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}} ]
+where:
+- (X) is the original value,
+- (X_{\text{min}}) is the minimum value of the feature,
+- (X_{\text{max}}) is the maximum value.
+By applying this formula, all values in the dataset get transformed within a fixed range, ensuring no feature dominates others due to scale differences.
+Using MinMaxScaler in Python
+
+
+from sklearn.preprocessing import MinMaxScaler
+import pandas as pd
+
+# Sample dataset
+data = {'Feature1': [10, 20, 30, 40, 50], 'Feature2': [100, 200, 300, 400, 500]}
+df = pd.DataFrame(data)
+
+# Initialize the scaler
+scaler = MinMaxScaler()
+
+# Apply normalization
+df_normalized = scaler.fit_transform(df)
+
+# Convert back to DataFrame for readability
+df_normalized = pd.DataFrame(df_normalized, columns=df.columns)
+
+print(df_normalized)
+
+Why Use It?
+- Useful when features have different scales.
+- Beneficial for distance-based algorithms like KNN, k-means, and neural networks.
+- Ensures data falls within a predefined range, helping models converge faster
+
+Scikit-learn (often abbreviated as sklearn) is a powerful machine learning library in Python. It provides simple and efficient tools for data preprocessing, classification, regression, clustering, and more.
+What is sklearn.preprocessing?
+The sklearn.preprocessing module contains various data transformation techniques to prepare raw data for machine learning models. Some key functions include:
+- Scaling (e.g., StandardScaler, MinMaxScaler)
+- Normalization (e.g., Normalizer)
+- Encoding categorical data (e.g., OneHotEncoder, LabelEncoder)
+- Feature transformation (e.g., PolynomialFeatures, PowerTransformer)
+Why Use Scikit-learn?
+- Easy to use with simple syntax
+- Optimized for performance
+- Works well with NumPy and Pandas
+- Supports various machine learning algorithms
+
+
